@@ -43,14 +43,19 @@ else {
 
 //Task5
 function isNum(n, divisor = 2, arr = []) {
-    if (n === 1) return;
-    if (n % 2 === 0) {
-        arr.push(2);
-        return isNum(n / 2, arr)
+    if (n < 2) return arr;
+
+    if (n % divisor === 0) {
+        arr.push(divisor);
+        return isNum(n / divisor, divisor, arr);
     }
-    else {
-        return isNum(n, divisor + 1, arr);
+
+    if (divisor > n / 2) { 
+        arr.push(n);
+        return arr;
     }
+
+    return isNum(n, divisor + 1, arr);
 }
 
 let number5 = prompt('Введіть число для розкладення на множники:');
